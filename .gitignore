@@ -57,14 +57,6 @@ lib/
 .vscode/
 *.log
 
-# ---- Vendored inversion demo assets (small, keep tracked) ----
-!inversion/example_images/*.jpeg
-!inversion/example_images/*.jpg
-!inversion/example_images/*.png
-!inversion/teaser.gif
-!inversion/src/FixedPointInversion/*.png
-!inversion/src/FixedPointInversion/*.jpg
-
 # ---- OS ----
 Thumbs.db
 .DS_Store

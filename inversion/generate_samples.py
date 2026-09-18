@@ -20,8 +20,8 @@ on CPU is impractically slow). First run downloads `stabilityai/sdxl-turbo`
 
 Quick start (run from this `inversion/` folder):
     pip install -r requirements.txt
-    python generate_samples.py --image example_images/lion.jpeg \
-        --prompt "a lion is sitting in the grass at sunset" --n 4
+    python generate_samples.py --image /path/to/input.jpg \
+        --prompt "a photo of ..." --n 4
 
 Flags:
     --image     path to the input image (required)
