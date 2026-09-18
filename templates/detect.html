@@ -1,0 +1,160 @@
+﻿{% extends "base.html" %}
+
+{% block title %}在线检测 - PCB 缺陷检测系统{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">ONLINE INSPECTION WORKBENCH</p>
+    <h1>在线检测</h1>
+    <p>上传 PCB 图像或使用示例样本，选择本地 YOLO `.pt` 权重后执行缺陷识别。</p>
+</section>
+
+<section class="detect-layout">
+    <article class="glass-card control-panel">
+        <div class="panel-head">
+            <div>
+                <p class="section-tag">Input</p>
+                <h2>检测控制台</h2>
+            </div>
+            <span class="chip">本地模型推理</span>
+        </div>
+
+        <form id="detect-form" data-detect-form>
+            <input type="hidden" name="example_name" id="example-name" value="">
+
+            <label class="field-label" for="pcb-image">上传 PCB 图像</label>
+            <label class="upload-zone" for="pcb-image">
+                <input id="pcb-image" type="file" name="image" accept=".jpg,.jpeg,.png,.bmp,.webp">
+                <span>拖拽图像到此处，或点击选择文件</span>
+                <small>支持 JPG / PNG / BMP / WEBP</small>
+            </label>
+
+            <div class="preview-frame">
+                <img id="source-preview" alt="原图预览" src="" hidden>
+                <div id="preview-placeholder" class="preview-placeholder">等待载入图像</div>
+            </div>
+
+            <div class="field-grid">
+                <div class="field field-span-2">
+                    <label class="field-label" for="model-path">模型文件 (.pt)</label>
+                    <div class="input-action-row">
+                        <input id="model-path" class="text-input" name="model_path" value="{{ default_model_path }}">
+                        <button type="button" class="button button-secondary action-button" id="choose-model-button">选择模型</button>
+                    </div>
+                    <p class="field-help">可手动输入模型路径，也可在客户端中点击“选择模型”打开本地文件。</p>
+                </div>
+                <div class="field">
+                    <label class="field-label" for="image-size">推理尺寸</label>
+                    <input id="image-size" class="text-input" type="number" name="image_size" value="{{ default_image_size }}">
+                </div>
+                <div class="field">
+                    <label class="field-label" for="conf-threshold">置信度阈值</label>
+                    <input id="conf-threshold" class="text-input" type="number" step="0.01" min="0.01" max="1" name="conf_threshold" value="{{ default_conf_threshold }}">
+                </div>
+                <div class="field">
+                    <label class="field-label" for="iou-threshold">IoU 阈值</label>
+                    <input id="iou-threshold" class="text-input" type="number" step="0.01" min="0.01" max="1" name="iou_threshold" value="{{ default_iou_threshold }}">
+                </div>
+            </div>
+
+            <div class="action-row">
+                <button type="submit" class="button button-primary">开始检测</button>
+                <button type="button" class="button button-secondary" id="reset-button">重置面板</button>
+            </div>
+        </form>
+    </article>
+
+    <article class="glass-card result-panel">
+        <div class="panel-head">
+            <div>
+                <p class="section-tag">Output</p>
+                <h2>检测结果</h2>
+            </div>
+            <span id="result-badge" class="chip chip-muted">等待检测</span>
+        </div>
+
+        <div class="result-frame">
+            <img id="annotated-preview" alt="标注结果图" src="" hidden>
+            <div id="result-placeholder" class="preview-placeholder">标注结果将在这里显示</div>
+        </div>
+
+        <div class="result-copy">
+            <h3 id="result-title">上传图像后开始识别</h3>
+            <p id="result-message">系统将输出风险等级、缺陷统计与坐标明细。</p>
+        </div>
+
+        <div class="summary-grid" id="summary-grid">
+            <article class="summary-card">
+                <span>缺陷总数</span>
+                <strong>-</strong>
+            </article>
+            <article class="summary-card">
+                <span>主要类别</span>
+                <strong>-</strong>
+            </article>
+            <article class="summary-card">
+                <span>推理耗时</span>
+                <strong>-</strong>
+            </article>
+            <article class="summary-card">
+                <span>模型文件</span>
+                <strong>-</strong>
+            </article>
+        </div>
+
+        <div class="distribution-panel">
+            <div class="panel-head panel-head-compact">
+                <div>
+                    <p class="section-tag">Distribution</p>
+                    <h3>缺陷分布</h3>
+                </div>
+            </div>
+            <div id="distribution-list" class="distribution-list">
+                <p class="empty-copy">检测完成后，这里会显示各缺陷类型的数量和占比。</p>
+            </div>
+        </div>
+    </article>
+</section>
+
+<section class="section-grid section-grid-2">
+    <article class="glass-card">
+        <div class="panel-head panel-head-compact">
+            <div>
+                <p class="section-tag">Quick Start</p>
+                <h2>示例样本</h2>
+            </div>
+        </div>
+        <div class="example-grid">
+            {% for item in examples %}
+            <button
+                type="button"
+                class="example-card"
+                data-example-button
+                data-example-key="{{ item.key }}"
+                data-example-preview="{{ item.preview_url }}"
+            >
+                <span class="example-tag">{{ item.tag }}</span>
+                <strong>{{ item.title }}</strong>
+                <small>{{ item.summary }}</small>
+            </button>
+            {% endfor %}
+        </div>
+    </article>
+
+    <article class="glass-card">
+        <div class="panel-head panel-head-compact">
+            <div>
+                <p class="section-tag">Detail Log</p>
+                <h2>缺陷明细</h2>
+            </div>
+        </div>
+        <div id="detail-list" class="detail-list">
+            <p class="empty-copy">检测完成后，这里会显示每个缺陷的类别、置信度与坐标范围。</p>
+        </div>
+    </article>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/app.js"></script>
+{% endblock %}

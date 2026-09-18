@@ -1,0 +1,64 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---- Virtual environments ----
+.venv/
+.venv-pack/
+venv/
+env/
+ENV/
+
+# ---- Build / packaging artifacts ----
+build/
+dist/
+*.exe
+*.dll
+*.pyd
+
+# ---- Model weights & training outputs ----
+*.pt
+*.pth
+*.onnx
+*.engine
+*.weights
+*.onnxruntime
+*.tflite
+*.h5
+
+# ---- Datasets / images / generated data ----
+PCB_remake/
+PCB_resize0.8_0.8/
+PCB_resize*/
+outputs/
+runs/
+datasets/
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.tif
+*.tiff
+
+# ---- Local / runtime dirs ----
+logs/
+bin/
+lib/
+.idea/
+.vscode/
+*.log
+
+# ---- OS ----
+Thumbs.db
+.DS_Store
+desktop.ini
+*.pptx

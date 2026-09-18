@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Moonlit Lake</title>
+  <desc id="desc">A quiet moonlit lake with mountains, pine trees, and a small boat.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#141832"/>
+      <stop offset="0.55" stop-color="#26395b"/>
+      <stop offset="1" stop-color="#7d8aa6"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f4966"/>
+      <stop offset="1" stop-color="#142130"/>
+    </linearGradient>
+    <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff9d8" stop-opacity="0.55"/>
+      <stop offset="0.45" stop-color="#fff9d8" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#fff9d8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="#111827"/>
+  <rect width="1200" height="500" fill="url(#sky)"/>
+  <circle cx="860" cy="130" r="112" fill="url(#moonGlow)"/>
+  <circle cx="860" cy="130" r="46" fill="#fff6c9"/>
+  <circle cx="842" cy="112" r="46" fill="#141832"/>
+
+  <g fill="#fff6d2" opacity="0.9">
+    <circle cx="135" cy="96" r="2.4"/>
+    <circle cx="231" cy="164" r="1.8"/>
+    <circle cx="344" cy="82" r="2.1"/>
+    <circle cx="514" cy="132" r="1.7"/>
+    <circle cx="628" cy="62" r="2"/>
+    <circle cx="742" cy="210" r="1.6"/>
+    <circle cx="990" cy="86" r="2.2"/>
+    <circle cx="1080" cy="190" r="1.7"/>
+  </g>
+
+  <path d="M0 435 L145 272 L270 420 L420 235 L605 438 L760 292 L950 438 L1088 310 L1200 428 L1200 520 L0 520 Z" fill="#18253c"/>
+  <path d="M0 460 L210 330 L370 468 L540 302 L710 462 L900 340 L1200 465 L1200 520 L0 520 Z" fill="#223551"/>
+  <path d="M0 490 C160 452 262 468 390 485 C560 508 682 444 812 468 C952 493 1032 462 1200 486 L1200 535 L0 535 Z" fill="#172637"/>
+
+  <rect y="500" width="1200" height="300" fill="url(#water)"/>
+  <ellipse cx="860" cy="552" rx="155" ry="18" fill="#fff3bc" opacity="0.18" filter="url(#soft)"/>
+  <path d="M704 552 C782 539 929 537 1014 552 C914 574 788 574 704 552 Z" fill="#fff3bc" opacity="0.18"/>
+  <path d="M653 603 C741 590 976 590 1070 606" fill="none" stroke="#ffefb0" stroke-width="6" stroke-linecap="round" opacity="0.12"/>
+  <path d="M602 660 C690 646 1008 648 1115 664" fill="none" stroke="#ffefb0" stroke-width="5" stroke-linecap="round" opacity="0.08"/>
+
+  <g fill="#0d1a21">
+    <path d="M62 523 L112 408 L164 523 Z"/>
+    <path d="M108 525 L162 390 L220 525 Z"/>
+    <path d="M188 526 L240 417 L292 526 Z"/>
+    <path d="M995 524 L1040 422 L1090 524 Z"/>
+    <path d="M1062 527 L1122 384 L1184 527 Z"/>
+  </g>
+  <g stroke="#0d1a21" stroke-width="16" stroke-linecap="round">
+    <line x1="112" y1="452" x2="112" y2="540"/>
+    <line x1="162" y1="438" x2="162" y2="540"/>
+    <line x1="240" y1="462" x2="240" y2="540"/>
+    <line x1="1040" y1="466" x2="1040" y2="540"/>
+    <line x1="1122" y1="434" x2="1122" y2="540"/>
+  </g>
+
+  <g transform="translate(0 10)">
+    <path d="M455 570 C505 592 575 592 628 570 C597 616 487 615 455 570 Z" fill="#0a1119"/>
+    <line x1="541" y1="565" x2="541" y2="492" stroke="#0a1119" stroke-width="7" stroke-linecap="round"/>
+    <path d="M548 500 C596 522 612 550 610 568 C586 554 564 530 548 500 Z" fill="#d8e5ea" opacity="0.92"/>
+    <path d="M535 501 C500 527 485 551 487 569 C507 558 525 532 535 501 Z" fill="#bfd2de" opacity="0.88"/>
+    <path d="M436 599 C494 610 586 610 650 598" fill="none" stroke="#8aa5b7" stroke-width="5" stroke-linecap="round" opacity="0.28"/>
+  </g>
+
+  <path d="M0 745 C154 715 248 750 395 728 C570 700 690 764 858 734 C1004 708 1085 718 1200 700 L1200 800 L0 800 Z" fill="#0a1218" opacity="0.82"/>
+</svg>

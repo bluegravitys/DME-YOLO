@@ -1,0 +1,57 @@
+﻿{% extends "base.html" %}
+
+{% block title %}软件信息 - PCB 缺陷检测系统{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">SOFTWARE INFORMATION</p>
+    <h1>软件信息</h1>
+    <p>本页用于说明客户端构成、模型部署方式、运行环境与项目文件组织。</p>
+</section>
+
+<section class="section-grid section-grid-2">
+    <article class="glass-card narrative-card">
+        <p class="section-tag">Client</p>
+        <h2>客户端组成</h2>
+        <ul class="line-list">
+            <li>桌面壳体：PyWebView 封装本地窗口界面</li>
+            <li>后端服务：FastAPI 提供页面路由与检测接口</li>
+            <li>前端页面：HTML、CSS、JavaScript 实现交互与结果展示</li>
+            <li>检测引擎：Ultralytics YOLO `.pt` 模型完成缺陷识别</li>
+        </ul>
+    </article>
+
+    <article class="glass-card narrative-card">
+        <p class="section-tag">Model</p>
+        <h2>模型部署方式</h2>
+        <ul class="line-list">
+            <li>支持加载默认权重文件 `best.pt`</li>
+            <li>支持在检测页切换用户自选 `.pt` 模型</li>
+            <li>模型推理在本地完成，不依赖远程接口</li>
+            <li>检测结果包括标注图、缺陷统计和坐标明细</li>
+        </ul>
+    </article>
+
+    <article class="glass-card narrative-card">
+        <p class="section-tag">Environment</p>
+        <h2>运行环境</h2>
+        <ul class="line-list">
+            <li>操作系统：Windows 桌面环境</li>
+            <li>推荐 Python 环境：3.10</li>
+            <li>支持 GPU 或 CPU 推理模式</li>
+            <li>适用于课程设计、论文展示与实验演示</li>
+        </ul>
+    </article>
+
+    <article class="glass-card narrative-card">
+        <p class="section-tag">Project</p>
+        <h2>项目文件</h2>
+        <ul class="line-list">
+            <li>`templates/`：页面模板</li>
+            <li>`static/`：样式与前端脚本</li>
+            <li>`best.pt`：默认模型权重</li>
+            <li>`PCB_remake/test/images/`：示例测试图像</li>
+        </ul>
+    </article>
+</section>
+{% endblock %}

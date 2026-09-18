@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PCB 缺陷检测系统{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="site-bg"></div>
+    <header class="site-header">
+        <div class="app-chrome">
+            <div class="app-chrome-drag pywebview-drag-region">
+                <a class="brand" href="/">
+                    <span class="brand-mark">PCB</span>
+                    <span class="brand-text">
+                        <strong>Defect Studio</strong>
+                        <small>YOLO Visual Inspection</small>
+                    </span>
+                </a>
+                <span class="title-caption">Desktop Inspection Client</span>
+            </div>
+            <nav class="site-nav">
+                {% for item in nav_items %}
+                <a href="{{ item.href }}" class="nav-link{% if active_page == item.key %} is-active{% endif %}">{{ item.label }}</a>
+                {% endfor %}
+            </nav>
+            <div class="window-controls" data-window-controls hidden>
+                <button class="window-btn" type="button" data-window-action="minimize" aria-label="最小化" title="最小化">
+                    <span class="window-icon window-icon-minimize"></span>
+                </button>
+                <button class="window-btn window-btn-toggle" type="button" data-window-action="maximize" aria-label="最大化" title="最大化">
+                    <svg class="window-icon icon-enter" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="6" y="6" width="12" height="12" rx="1.5" />
+                    </svg>
+                    <svg class="window-icon icon-exit" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="9" y="6" width="9" height="9" rx="1.2" />
+                        <path d="M6 9h9v9H6z" />
+                    </svg>
+                </button>
+                <button class="window-btn is-close" type="button" data-window-action="close" aria-label="关闭" title="关闭">
+                    <svg class="window-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6L6 18" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <span>本地 YOLO `.pt` 推理</span>
+        <span>PCB 缺陷识别桌面客户端版</span>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+    <script src="/static/js/shell.js"></script>
+</body>
+</html>

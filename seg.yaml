@@ -1,0 +1,9 @@
+path: /root/autodl-tmp/yolov10-MNV4/PCB_resize0.8_0.8  # dataset root dir
+train: test.txt  # train images (relative to 'path') 118287 images
+val: train.txt  # val images (relative to 'path') 5000 images
+test: val.txt
+m: [0.67, 0.75, 768]
+# Classes
+nc: 6  # number of classes
+names: ['missing_hole', 'mouse_bite', 'open_circuit', 'short', 'spur', 'spurious_copper']
+

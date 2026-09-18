@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}缺陷说明 - PCB 缺陷检测系统{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">PCB DEFECT KNOWLEDGE BASE</p>
+    <h1>缺陷说明</h1>
+    <p>把系统支持识别的 PCB 缺陷类型单独放到知识页，页面层次会更清晰，也更适合做演示说明。</p>
+</section>
+
+<section class="section-grid section-grid-3">
+    {% for item in defect_library %}
+    <article class="glass-card defect-card" style="--accent: {{ item.color }};">
+        <p class="section-tag">Defect</p>
+        <h2>{{ item.name }}</h2>
+        <p>{{ item.description }}</p>
+        <div class="defect-meta">
+            <strong>风险影响</strong>
+            <span>{{ item.risk }}</span>
+        </div>
+        <div class="defect-meta">
+            <strong>建议复核</strong>
+            <span>{{ item.inspection }}</span>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

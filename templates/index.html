@@ -1,0 +1,76 @@
+﻿{% extends "base.html" %}
+
+{% block title %}首页 - PCB 缺陷检测系统{% endblock %}
+
+{% block content %}
+<section class="hero-panel">
+    <div class="hero-copy">
+        <p class="eyebrow">PCB QUALITY CONTROL CLIENT</p>
+        <h1>面向 PCB 缺陷识别的本地化桌面检测客户端</h1>
+        <p class="hero-text">
+            系统围绕 YOLO 模型推理、缺陷结果展示与客户端交互设计构建，
+            支持本地加载 `.pt` 权重、上传图像检测、查看标注结果与缺陷明细，
+            适合课程设计、论文展示、实验演示与桌面端交付。
+        </p>
+        <div class="hero-actions">
+            <a class="button button-primary" href="/detect">进入在线检测</a>
+            <a class="button button-secondary" href="/about">查看系统信息</a>
+        </div>
+    </div>
+    <div class="glass-stack">
+        {% for metric in hero_metrics %}
+        <article class="glass-card metric-card">
+            <span>{{ metric.label }}</span>
+            <strong>{{ metric.value }}</strong>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section-grid section-grid-3">
+    {% for card in feature_cards %}
+    <article class="glass-card feature-card">
+        <p class="section-tag">Feature</p>
+        <h3>{{ card.title }}</h3>
+        <p>{{ card["copy_text"] }}</p>
+    </article>
+    {% endfor %}
+</section>
+
+<section class="section-grid section-grid-2">
+    <article class="glass-card narrative-card">
+        <p class="section-tag">Tech Stack</p>
+        <h2>客户端技术栈</h2>
+        <p>采用本地推理加桌面封装方案，兼顾演示效果、交互体验与离线部署能力。</p>
+        <ul class="line-list">
+            <li>后端服务：FastAPI + Uvicorn</li>
+            <li>前端渲染：Jinja2 + HTML + CSS + JavaScript</li>
+            <li>推理引擎：Ultralytics YOLO `.pt` 本地模型</li>
+            <li>桌面封装：PyWebView + PyInstaller</li>
+        </ul>
+    </article>
+    <article class="glass-card narrative-card">
+        <p class="section-tag">Runtime</p>
+        <h2>客户端运行能力</h2>
+        <div class="example-list">
+            <div class="example-pill">
+                <strong>本地模型调用</strong>
+                <span>直接读取训练完成的 `.pt` 权重文件，启动后即可执行缺陷检测。</span>
+            </div>
+            <div class="example-pill">
+                <strong>统一窗口控制</strong>
+                <span>提供最小化、全屏切换与关闭按钮，维持统一的桌面客户端风格。</span>
+            </div>
+            <div class="example-pill">
+                <strong>结果可视化输出</strong>
+                <span>输出标注图像、检测摘要、类别分布、坐标明细与缺陷信息。</span>
+            </div>
+            <div class="example-pill">
+                <strong>缺陷类型覆盖</strong>
+                <span>支持缺孔、鼠咬、断路、短路、毛刺和杂铜等 PCB 常见缺陷。</span>
+            </div>
+        </div>
+    </article>
+</section>
+{% endblock %}
+
